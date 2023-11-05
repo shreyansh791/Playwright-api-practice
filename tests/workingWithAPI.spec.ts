@@ -11,9 +11,21 @@ test.beforeEach(async ({ page }) => {
       body: JSON.stringify(data)
     })
   })
+
+  await page.route('*/**/api/articles*', async route => {
+    // Fetch original response.  
+    const response = await route.fetch();
+    const responseBody = await response.json();
+    responseBody.articles[0].title = "This is a test title";
+    responseBody.articles[0].description = "This is a test description";
+    await route.fulfill({
+      body: JSON.stringify(responseBody)
+    })
+  })
   await page.goto('https://angular.realworld.io/');
 });
 
 test('has title', async ({ page }) => {
   await expect(page.locator('.navbar-brand')).toHaveText('conduit')
+  await page.waitForTimeout(1000)
 });
