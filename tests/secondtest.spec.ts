@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test"
 test('gets the json from api and adds a new fruit', async ({ page }) => {
-    // Get the response and add to it
+    
+     // Mock the api call before navigating
     await page.route('**/api/v1/fruits', async route => {
         const response = await route.fetch();
         const responseBody = await response.json();
