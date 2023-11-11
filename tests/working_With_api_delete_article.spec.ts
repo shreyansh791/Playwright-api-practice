@@ -1,11 +1,9 @@
 import { test, expect } from '@playwright/test';
-import data from "../test-data/data.json"
-import exp from 'constants';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('https://angular.realworld.how/');
 });
-
+// Article is created using the UI route
 test('has title', async ({ page, request }) => {
   await expect(page.locator('.navbar-brand')).toHaveText('conduit')
   await page.getByText('Sign in').click()
@@ -18,7 +16,7 @@ test('has title', async ({ page, request }) => {
   await page.getByRole('textbox', { name: 'What\'s this article about?' }).fill('Playwright12')
   await page.getByPlaceholder('Write your article (in markdown)').fill('Playwright12')
   await page.getByRole('button', { name: 'Publish Article' }).click()
- // below line is important we are instructing playwright to wait for the api call response.
+  // below line is important we are instructing playwright to wait for the api call response.
   const articleResponse = await page.waitForResponse('https://api.realworld.io/api/articles/')
   const articleResponseBody = await articleResponse.json()
   console.log("articleResponseBody ", articleResponseBody)
@@ -48,6 +46,10 @@ test('has title', async ({ page, request }) => {
 
   })
   await expect(deleteArticleResponse.status()).toEqual(204)
+  // verify again
+  await page.getByText('Global Feed').click()
+  await expect(page.locator('.preview-link h1').first())
+    .not.toContainText('Playwright is awesome')
 
 });
 
