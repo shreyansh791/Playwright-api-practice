@@ -8,7 +8,7 @@ test('file upload', async ({ page }) => {
 
     // Start waiting for file chooser before clicking. Note no await.
     const fileChooserPromise = page.waitForEvent('filechooser');
-            // upload test file
+    // upload test file
     await page.locator('input#input_1').click();
     const fileChooser = await fileChooserPromise;
     await fileChooser.setFiles(filePath);
@@ -42,10 +42,10 @@ test.describe('Upload File', () => {
 
     test('should upload a test file on a hidden input field', async ({ page }) => {
         // Open url
-        await page.goto("https://practice.automationbro.com/cart/");
+        await page.goto("https://practice.sdetunicorns.com/cart");
 
         // provide test file path
-        const filePath = path.join(__dirname, '../data/logotitle.png');
+        const filePath = path.join(__dirname, '../test-data/images/401issue.PNG');
 
         // DOM manipulation
         await page.evaluate(() => {
