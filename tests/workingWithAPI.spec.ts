@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 import data from "../test-data/data.json"
 // Article is created using the API route
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://angular.realworld.how/');
+  await page.goto('/');
+  await page.getByText('some_text').pressSequentially('World', { delay: 100 });
+  
 });
 let accessToken;
 test('delete article', async ({ page, request }) => {

@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://angular.realworld.how/');
+  await page.goto('/');
+  
 });
 // Article is created using the UI route
 test('has title', async ({ page, request }) => {
