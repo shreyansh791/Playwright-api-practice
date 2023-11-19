@@ -71,11 +71,12 @@ export default defineConfig<TestOptions>({
       use: { ...devices['Desktop Firefox'] },
       // dependencies: ['setup']
     },
-
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-      // dependencies: ['setup']
+      name: 'pageObjectFullScreen',
+      testMatch: 'faker-demo.spec.ts',
+      use: {
+        viewport: {width: 1920, height: 1080}
+      }
     },
 
     /* Test against mobile viewports. */
