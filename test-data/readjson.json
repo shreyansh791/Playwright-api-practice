@@ -1,0 +1,14 @@
+{
+    "username":"shreyansh",
+    "password":"password123",
+    "name":"shreyansh",
+    "interest":["cypress","API","selenium"],
+    "gender":"Male",
+    "address":{
+        "area":"HSR",
+        "city":"Bangalore",
+        "pincode":556699
+    }
+
+
+}
